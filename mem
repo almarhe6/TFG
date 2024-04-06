@@ -1,0 +1,2 @@
+PSQL elegida ya que las bases de datos relacionales son las más utilizadas en este sector
+Base de datos "sencilla" para favorecer la escalabilidad y monolítica porque microservicios añadirían demasiada complejidad
