@@ -1,12 +1,6 @@
--- users
-document_number,name,surname,phone,email,card_number
-11111111A,Roberto,Iniesta Ojea,688888888,robe@mail.com,1111222233334444
-22222222B,Albert,Pla i Alvarez,677777777,apla@mail.com,4444333322221111
-
 -- funds
-isin,index,name,company
 IE00B03HCZ61,World,Vanguard Global Stock Index Fund Investor EUR Accumulation,The Vanguard Group Inc.
 LU0996182563,World,Amundi Index Solutions - Amundi Index MSCI World AE-C,Amundi
 LU0836512615,World,Shares World Equity Index Fund (LU) N7 EUR,BlackRock Inc.
-IE0007472990,Europe,Vanguard Euro Government Bond Index Fund EUR Acc,The Vanguard Group Inc. 
+IE0007472990,Europe,Vanguard Euro Government Bond Index Fund EUR Acc,The Vanguard Group Inc.
 IE00B4XCK338,Europe,iShares Ultra High Quality Euro Government Bond Index,Blacrock Inc.
