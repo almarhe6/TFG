@@ -23,7 +23,7 @@ public class FinancialController {
     public Object getFundHistorical(){
         return null;
     }
-    
+
     @PostMapping("/funds/{isin}/buy")
     public Object buyFund(){
         return null;
