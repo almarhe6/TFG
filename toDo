@@ -1,0 +1,7 @@
+-Crear entities
+-Crear dtos
+-Crear controladores
+-Crear Servicios
+-Introducir la aplicacion java en un docker
+-Añadir cache de redis
+-Añadir graylog 
