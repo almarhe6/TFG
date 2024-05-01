@@ -25,7 +25,10 @@ public class Transaction {
     @JoinColumn(name = "document_number", referencedColumnName = "document_number")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "isin", referencedColumnName = "isin")
     private String isin;
+
     private boolean buySell;
     private double quantity;
     private boolean processed;

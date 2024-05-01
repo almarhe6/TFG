@@ -1,11 +1,10 @@
 package tfg.apitfg.model.entity;
 
-import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +18,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Table(name="funds_historical")
 public class FundHistorical {
-    private String id;
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "isin", referencedColumnName = "isin")
+    private String isin;
+
     @Column(name = "day")
     private LocalDateTime date;
 
@@ -39,5 +43,4 @@ public class FundHistorical {
     private double rent20Year;
 
     private double rent;
-
 }
