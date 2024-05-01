@@ -24,7 +24,7 @@ public class InvestmentPlan {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "document_number", referencedColumnName = "document_number")
+    @JoinColumn(name = "email", referencedColumnName = "email")
     private User user;
 
     @Id

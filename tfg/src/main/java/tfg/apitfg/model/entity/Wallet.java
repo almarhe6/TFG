@@ -21,7 +21,7 @@ import tfg.apitfg.model.keys.FundUserPrimaryKey;
 public class Wallet {
     @Id
     @ManyToOne
-    @JoinColumn(name = "document_number", referencedColumnName = "document_number")
+    @JoinColumn(name = "email", referencedColumnName = "email")
     private String documentNumber;
 
     @Id

@@ -1,4 +1,4 @@
-package tfg.apitfg.mapper;
+package tfg.apitfg.config.mapper;
 
 import org.mapstruct.Mapper;
 import tfg.apitfg.model.dto.FundDto;

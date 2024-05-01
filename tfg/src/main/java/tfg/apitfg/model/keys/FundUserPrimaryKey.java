@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class FundUserPrimaryKey {
-    private String documentNumber;
+    private String email;
     private String isin;
 }

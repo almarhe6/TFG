@@ -1,7 +1,7 @@
 spring:
   datasource:
-    url: jdbc:postgresql://172.17.0.2:5432/tfg_db
-    username: postgres
+    url: jdbc:postgresql://localhost:5432/tfg_db
+    username: alejandromartorellhernandez
     password: 1234
     driver-class-name: org.postgresql.Driver
   jpa:
