@@ -5,3 +5,5 @@
 -Introducir la aplicacion java en un docker
 -Añadir cache de redis
 -Añadir graylog 
+-Añadir tests unitarios
+-Migrar todo a aws
