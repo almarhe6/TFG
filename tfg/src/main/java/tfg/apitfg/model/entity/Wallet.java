@@ -14,19 +14,21 @@ import tfg.apitfg.model.keys.FundUserPrimaryKey;
 
 @Data
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name="funds_historical")
+@Table(name="wallet")
 @IdClass(FundUserPrimaryKey.class)
 public class Wallet {
-    @Id
     @ManyToOne
     @JoinColumn(name = "email", referencedColumnName = "email")
-    private String documentNumber;
+    private User user;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "isin", referencedColumnName = "isin")
+    private Fund fund;
+
+    @Id
+    private String email;
+
+    @Id
     private String isin;
 
     @Column(name = "quantity")

@@ -16,24 +16,28 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "investment_plans")
+@Table(name="investment_plans")
 @IdClass(FundUserPrimaryKey.class)
 public class InvestmentPlan {
-
-    @Id
     @ManyToOne
     @JoinColumn(name = "email", referencedColumnName = "email")
     private User user;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "isin", referencedColumnName = "isin")
+    private Fund fund;
+
+    @Id
+    private String email;
+
+    @Id
     private String isin;
 
-    @Column(name = "day")
-    private LocalDateTime date;
-
+    @Column(name = "quantity")
     private double quantity;
+
+    @Column(name = "day")
+    private LocalDateTime day;
+
+    // Getters y setters
 }
