@@ -38,6 +38,4 @@ public class InvestmentPlan {
 
     @Column(name = "day")
     private LocalDateTime day;
-
-    // Getters y setters
 }

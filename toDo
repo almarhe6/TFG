@@ -1,9 +1,9 @@
--Crear entities
--Crear dtos
+-Crear entities -> hecho
+-Crear dtos -> hecho
 -Crear controladores
 -Crear Servicios
--Introducir la aplicacion java en un docker
 -Añadir cache de redis
 -Añadir graylog 
 -Añadir tests unitarios
+-Revisar seguridad(autorizacion y autenticación")
 -Migrar todo a aws

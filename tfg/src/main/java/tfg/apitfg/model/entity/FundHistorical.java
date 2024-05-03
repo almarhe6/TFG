@@ -53,6 +53,4 @@ public class FundHistorical {
 
     @Column(name = "rent")
     private double rent;
-
-    // Getters y setters
 }

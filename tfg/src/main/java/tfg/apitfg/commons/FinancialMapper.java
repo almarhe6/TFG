@@ -1,4 +1,4 @@
-package tfg.apitfg.config.mapper;
+package tfg.apitfg.commons;
 
 import org.mapstruct.Mapper;
 import tfg.apitfg.model.dto.FundDto;
@@ -15,7 +15,7 @@ import tfg.apitfg.model.entity.User;
 import tfg.apitfg.model.entity.Wallet;
 
 @Mapper(componentModel = "spring")
-public interface mainMapper {
+public interface FinancialMapper {
     FundDto toDto(Fund fund);
     Fund toEntity(FundDto fundDto);
 
