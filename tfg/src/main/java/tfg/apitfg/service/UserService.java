@@ -2,9 +2,7 @@ package tfg.apitfg.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpServerErrorException;
 import tfg.apitfg.commons.FinancialExceptionCode;
 import tfg.apitfg.commons.FinancialHttpException;
 import tfg.apitfg.model.entity.User;
@@ -13,7 +11,7 @@ import tfg.apitfg.repository.UserRepository;
 @Service
 @RequiredArgsConstructor
 public class UserService implements  IUserService{
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public void createUser(User user){
@@ -58,7 +56,7 @@ public class UserService implements  IUserService{
     }
 
     @Override
-    public User retrieveUser(String email){
+    public User findUser(String email){
         try {
             var user = userRepository.findById(email);
 
@@ -69,7 +67,7 @@ public class UserService implements  IUserService{
             return user.get();
 
         } catch(DataAccessException e) {
-            throw new FinancialHttpException(FinancialExceptionCode.USER__RETRIEVE_REPOSITORY_ERROR);
+            throw new FinancialHttpException(FinancialExceptionCode.USER__FINDING_REPOSITORY_ERROR);
         }
     }
 }

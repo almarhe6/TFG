@@ -14,9 +14,12 @@ import tfg.apitfg.model.entity.Transaction;
 import tfg.apitfg.model.entity.User;
 import tfg.apitfg.model.entity.Wallet;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface FinancialMapper {
     FundDto toDto(Fund fund);
+    List<FundDto> toDto(List<Fund> fund);
     Fund toEntity(FundDto fundDto);
 
     UserDto toDto(User user);

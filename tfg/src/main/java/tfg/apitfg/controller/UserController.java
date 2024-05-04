@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @GetMapping("/obtain")
-    public UserDto obtainUser(@RequestParam String email){
-        return financialMapper.toDto(userService.retrieveUser(email));
+    public UserDto getUser(@RequestParam String email){
+        return financialMapper.toDto(userService.findUser(email));
     }
 }
