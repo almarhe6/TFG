@@ -19,6 +19,12 @@ public class UserController {
     private final FinancialMapper financialMapper;
     private final IUserService userService;
 
+    @GetMapping("/prueba")
+    public String prueba(){
+        return "probando";
+    }
+
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
     public void createUser(@RequestParam UserDto userDto){

@@ -36,4 +36,5 @@ public class User {
 
     @Column(name = "card_number")
     private String cardNumber;
+
 }

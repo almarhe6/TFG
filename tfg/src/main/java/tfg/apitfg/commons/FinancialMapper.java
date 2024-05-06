@@ -19,21 +19,24 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface FinancialMapper {
     FundDto toDto(Fund fund);
-    List<FundDto> toDto(List<Fund> fund);
     Fund toEntity(FundDto fundDto);
+    List<FundDto> fundsToDto(List<Fund> fund);
 
     UserDto toDto(User user);
     User toEntity(UserDto userDto);
 
     FundHistoricalDto toDto(FundHistorical fundHistorical);
     FundHistorical toEntity(FundHistoricalDto fundHistoricalDto);
+    List<FundHistoricalDto> historicalToDto(List<FundHistorical> fundHistoricals);
 
     WalletDto toDto(Wallet wallet);
     Wallet toEntity(WalletDto walletDto);
 
     TransactionDto toDto(Transaction transaction);
     Transaction toEntity(TransactionDto transactionDto);
+    List<TransactionDto> transactionsToDto(List<Transaction> transaction);
 
     InvestmentPlanDto toDto(InvestmentPlan investmentPlan);
     InvestmentPlan toEntity(InvestmentPlanDto investmentPlanDto);
+    List<InvestmentPlanDto> investmentPlansToDto(List<InvestmentPlan> investmentPlans);
 }

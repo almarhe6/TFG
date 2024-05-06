@@ -1,9 +1,11 @@
 -Crear entities -> hecho
 -Crear dtos -> hecho
--Crear controladores
--Crear Servicios
+-Crear controladores -> hecho
+-Crear Servicios -> hecho
+-Crear scheduler
+-Modificar oauth2 para que devuelva un jwt de autorizacion 
+-Probar servicios
+-Añadir tests unitarios
 -Añadir cache de redis
 -Añadir graylog 
--Añadir tests unitarios
--Revisar seguridad(autorizacion y autenticación")
 -Migrar todo a aws
