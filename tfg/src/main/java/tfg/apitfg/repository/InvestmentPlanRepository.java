@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface InvestmentPlanRepository extends CrudRepository<InvestmentPlan, FundUserPrimaryKey> {
     List<InvestmentPlan> findAllByEmail(String email);
+    @Override
+    List<InvestmentPlan> findAll();
 }

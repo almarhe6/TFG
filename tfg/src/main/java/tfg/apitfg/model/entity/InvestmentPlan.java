@@ -7,13 +7,11 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import tfg.apitfg.model.keys.FundUserPrimaryKey;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -39,5 +37,5 @@ public class InvestmentPlan {
     private double quantity;
 
     @Column(name = "day")
-    private LocalDateTime day;
+    private LocalDate day;
 }

@@ -17,7 +17,7 @@ public interface IFundService {
     List<Transaction>  findTransactions(String email, String isin, LocalDateTime start, LocalDateTime end);
     List<FundHistorical> findFundHistorical(String isin, LocalDate start, LocalDate end);
     void tradeFund(String email, String isin, boolean buyOrSell, double quantity);
-    void createInvestmentPlan(String email, String isin, Double quantity, LocalDateTime date);
+    void createInvestmentPlan(String email, String isin, Double quantity, LocalDate date);
     void deleteInvestmentPlan(String email, String isin);
     InvestmentPlan findInvestmentPlan(String email, String isin);
     List<InvestmentPlan> findInvestmentPlans(String email);

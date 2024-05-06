@@ -80,7 +80,7 @@ public class FinancialController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/investmentPlan/create")
-    public void createInvestmentPlan(@RequestAttribute String email, @PathVariable String isin, Double quantity, LocalDateTime date){
+    public void createInvestmentPlan(@RequestAttribute String email, @PathVariable String isin, Double quantity, LocalDate date){
         fundService.createInvestmentPlan(email, isin, quantity, date);
     }
 

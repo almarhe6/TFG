@@ -2,7 +2,7 @@
 -Crear dtos -> hecho
 -Crear controladores -> hecho
 -Crear Servicios -> hecho
--Crear scheduler
+-Crear scheduler -> hecho
 -Modificar oauth2 para que devuelva un jwt de autorizacion 
 -Probar servicios
 -Añadir tests unitarios

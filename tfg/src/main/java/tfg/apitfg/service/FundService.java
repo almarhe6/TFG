@@ -43,10 +43,7 @@ public class FundService implements IFundService{
     @Override
     public List<Fund> findFunds() {
         try {
-            var fundsIterable = fundRepository.findAll();
-            var funds = new ArrayList<Fund>();
-            fundsIterable.forEach(funds::add);
-            return funds;
+            return fundRepository.findAll();
         } catch(DataAccessException e) {
             throw new FinancialHttpException(FinancialExceptionCode.FUND__FINDING_REPOSITORY_ERROR);
         }
@@ -139,7 +136,7 @@ public class FundService implements IFundService{
     }
 
     @Override
-    public void createInvestmentPlan(String email, String isin, Double quantity, LocalDateTime date){
+    public void createInvestmentPlan(String email, String isin, Double quantity, LocalDate date){
         try{
             if(investmentPlanRepository.findById(FundUserPrimaryKey.builder()
                     .email(email)

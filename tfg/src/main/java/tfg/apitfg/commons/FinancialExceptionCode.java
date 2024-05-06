@@ -22,7 +22,8 @@ public enum FinancialExceptionCode {
     INVESTMENT_PLAN__SAVING_REPOSITORY_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Error saving investment plan from the database"),
     INVESTMENT_PLAN__NOT_FOUND_REPOSITORY_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Error finding investment plan from the database"),
     INVESTMENT_PLAN__ALREADY_EXISTS_REPOSITORY_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Error finding investment plan from the database"),
-    INVESTMENT_PLAN__DELETING_REPOSITORY_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Error deleting investment plan from the database");
+    INVESTMENT_PLAN__DELETING_REPOSITORY_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Error deleting investment plan from the database"),
+    SCHEDULER__ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Error in Scheduler");
 
     private final HttpStatus status;
     private final String description;
