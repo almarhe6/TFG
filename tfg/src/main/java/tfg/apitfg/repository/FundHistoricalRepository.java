@@ -11,9 +11,9 @@ import java.util.List;
 
 @Repository
 public interface FundHistoricalRepository extends CrudRepository<FundHistorical,String> {
-    @Query("SELECT fh FROM FundsHistorical fh " +
-            "WHERE fh.fundsHistoricalPrimaryKey.isin = :isin " +
-            "AND fh.fundsHistoricalPrimaryKey.date BETWEEN :startDate AND :endDate")
+    @Query("SELECT fh FROM FundHistorical fh " +
+            "WHERE fh.isin = :isin " +
+            "AND fh.date BETWEEN :startDate AND :endDate")
     List<FundHistorical> findByIsinAndDateBetween(
             @Param("isin") String isin,
             @Param("startDate") LocalDate startDate,

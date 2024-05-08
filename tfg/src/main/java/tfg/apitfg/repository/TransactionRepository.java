@@ -13,9 +13,9 @@ import java.util.List;
 @Repository
 public interface TransactionRepository extends CrudRepository<Transaction, FundUserPrimaryKey> {
     @Query("SELECT t FROM Transaction t " +
-            "WHERE t.fundUserPrimaryKey.email = :email " +
-            "AND t.fundUserPrimaryKey.isin = :isin " +
-            "AND t.effectDatetime BETWEEN :startDate AND :endDate")
+            "WHERE t.email = :email " +
+            "AND t.isin = :isin " +
+            "AND t.effectDateTime BETWEEN :startDate AND :endDate")
     List<Transaction> findByEmailAndIsinAndEffectDatetimeBetween(
             @Param("email") String email,
             @Param("isin") String isin,
