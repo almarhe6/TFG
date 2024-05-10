@@ -12,12 +12,10 @@ public class FinancialHttpException extends RuntimeException {
     private final Map<String, ?> errorData;
     private final FinancialExceptionCode financialExceptionCode;
 
-    public FinancialHttpException(FinancialExceptionCode financialExceptionCode){
+    public FinancialHttpException(FinancialExceptionCode financialExceptionCode) {
         this.status = financialExceptionCode.getStatus();
         this.code = financialExceptionCode.getDescription();
         this.errorData = Collections.emptyMap();
         this.financialExceptionCode = financialExceptionCode;
     }
-
 }
-

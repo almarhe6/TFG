@@ -1,11 +1,10 @@
 package tfg.apitfg.model.dto;
 
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import tfg.apitfg.model.entity.User;
-
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor

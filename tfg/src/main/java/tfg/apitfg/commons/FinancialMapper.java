@@ -1,5 +1,6 @@
 package tfg.apitfg.commons;
 
+import java.util.List;
 import org.mapstruct.Mapper;
 import tfg.apitfg.model.dto.FundDto;
 import tfg.apitfg.model.dto.FundHistoricalDto;
@@ -14,29 +15,37 @@ import tfg.apitfg.model.entity.Transaction;
 import tfg.apitfg.model.entity.User;
 import tfg.apitfg.model.entity.Wallet;
 
-import java.util.List;
-
 @Mapper(componentModel = "spring")
 public interface FinancialMapper {
     FundDto toDto(Fund fund);
+
     Fund toEntity(FundDto fundDto);
+
     List<FundDto> fundsToDto(List<Fund> fund);
 
     UserDto toDto(User user);
+
     User toEntity(UserDto userDto);
 
     FundHistoricalDto toDto(FundHistorical fundHistorical);
+
     FundHistorical toEntity(FundHistoricalDto fundHistoricalDto);
+
     List<FundHistoricalDto> historicalToDto(List<FundHistorical> fundHistoricals);
 
     WalletDto toDto(Wallet wallet);
+
     Wallet toEntity(WalletDto walletDto);
 
     TransactionDto toDto(Transaction transaction);
+
     Transaction toEntity(TransactionDto transactionDto);
+
     List<TransactionDto> transactionsToDto(List<Transaction> transaction);
 
     InvestmentPlanDto toDto(InvestmentPlan investmentPlan);
+
     InvestmentPlan toEntity(InvestmentPlanDto investmentPlanDto);
+
     List<InvestmentPlanDto> investmentPlansToDto(List<InvestmentPlan> investmentPlans);
 }

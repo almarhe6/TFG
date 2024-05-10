@@ -1,5 +1,7 @@
 package tfg.apitfg.commons;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -14,9 +16,6 @@ import tfg.apitfg.repository.WalletRepository;
 import tfg.apitfg.service.IFundService;
 import tfg.apitfg.service.IUserService;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 @Component
 @RequiredArgsConstructor
 public class Scheduler {
@@ -28,10 +27,9 @@ public class Scheduler {
     private final FundHistoricalRepository fundHistoricalRepository;
     private final InvestmentPlanRepository investmentPlanRepository;
 
-
     // Itera sobre las transacciones pendientes, las marca como procesadas y actualiza las carteras
     @Scheduled(fixedRate = 30000)
-    public void completeTransaction(){
+    public void completeTransaction() {
         try {
             var newWallet = new ArrayList<Wallet>();
 
@@ -42,7 +40,7 @@ public class Scheduler {
                         .isin(t.getIsin())
                         .email(t.getEmail())
                         .build());
-                if(walletOptional.isEmpty()){
+                if (walletOptional.isEmpty()) {
                     newWallet.add(Wallet.builder()
                             .isin(t.getIsin())
                             .email(t.getEmail())
@@ -50,16 +48,17 @@ public class Scheduler {
                             .fund(fundService.findFund(t.getIsin()))
                             .user(userService.findUser(t.getEmail()))
                             .build());
-                } else{
+                } else {
                     var wallet = walletOptional.get();
-                    wallet.setQuantity(wallet.getQuantity() == null? t.getQuantity() : wallet.getQuantity() + t.getQuantity());
+                    wallet.setQuantity(
+                            wallet.getQuantity() == null ? t.getQuantity() : wallet.getQuantity() + t.getQuantity());
                     newWallet.add(wallet);
                 }
             });
 
             walletRepository.saveAll(newWallet);
 
-        } catch (DataAccessException e){
+        } catch (DataAccessException e) {
             throw new FinancialHttpException(FinancialExceptionCode.SCHEDULER__ERROR);
         }
     }
@@ -74,9 +73,8 @@ public class Scheduler {
             investmentPlans.stream().filter(iv -> today.equals(iv.getDay())).forEach(iv -> {
                 fundService.tradeFund(iv.getEmail(), iv.getIsin(), true, iv.getQuantity());
             });
-        } catch (DataAccessException e){
+        } catch (DataAccessException e) {
             throw new FinancialHttpException(FinancialExceptionCode.SCHEDULER__ERROR);
         }
     }
-
 }

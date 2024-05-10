@@ -20,31 +20,30 @@ public class UserController {
     private final IUserService userService;
 
     @GetMapping("/prueba")
-    public String prueba(){
+    public String prueba() {
         return "probando";
     }
 
-
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
-    public void createUser(@RequestParam UserDto userDto){
+    public void createUser(@RequestParam UserDto userDto) {
         userService.createUser(financialMapper.toEntity(userDto));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/delete")
-    public void deleteUser(@RequestParam UserDto userDto){
+    public void deleteUser(@RequestParam UserDto userDto) {
         userService.deleteUser(financialMapper.toEntity(userDto));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/modify")
-    public void modifyUser(@RequestParam UserDto userDto){
+    public void modifyUser(@RequestParam UserDto userDto) {
         userService.createUser(financialMapper.toEntity(userDto));
     }
 
     @GetMapping("/obtain")
-    public UserDto getUser(@RequestParam String email){
+    public UserDto getUser(@RequestParam String email) {
         return financialMapper.toDto(userService.findUser(email));
     }
 }

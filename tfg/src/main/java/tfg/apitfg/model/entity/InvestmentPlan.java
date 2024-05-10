@@ -7,16 +7,15 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
 import lombok.Builder;
 import lombok.Data;
 import tfg.apitfg.model.keys.FundUserPrimaryKey;
 
-import java.time.LocalDate;
-
 @Data
 @Builder
 @Entity
-@Table(name="investment_plans")
+@Table(name = "investment_plans")
 @IdClass(FundUserPrimaryKey.class)
 public class InvestmentPlan {
     @ManyToOne

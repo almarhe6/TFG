@@ -2,3 +2,14 @@ PSQL elegida ya que las bases de datos relacionales son las más utilizadas en e
 Base de datos "sencilla" para favorecer la escalabilidad y monolítica porque microservicios añadirían demasiada complejidad
 Creado autenticacion/autorizacion por oauth2 google
 Creados entities mediante jpa
+
+
+curl --location --request POST 'https://oauth2.googleapis.com/token' \
+--header 'Authorization: Bearer ya29.a0AXooCgsKK2GFRwQbkbqEAlDW5T1atJ59rC4rGAHVgupbO_KaroEX6vMzSrhmLVQvNDrXMkiMdXv2_LHvAhd9mUY1m3mpHepVmG36FhjA4moIhp87KBEPtACVszCrqRo-1qfliysOy4wNAEJuwtISmMISCVqGapIlG-h7WMwGsAaCgYKAfMSARMSFQHGX2MiuLrv74dVouhVEIQlvrEWaw0177'
+
+auth URL: https://accounts.google.com/o/oauth2/auth
+acces token url : https://accounts.google.com/o/oauth2/token
+client id : 683776942617-61k7okql535u11c1hvlj7pmh66fr42hd.apps.googleusercontent.com
+
+clien secret: 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
+scope: https://www.googleapis.com/auth/userinfo.email

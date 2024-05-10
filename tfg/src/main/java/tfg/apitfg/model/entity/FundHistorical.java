@@ -7,18 +7,13 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import tfg.apitfg.model.keys.FundHistoricalPrimaryKey;
-import tfg.apitfg.model.keys.FundUserPrimaryKey;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import lombok.Data;
+import tfg.apitfg.model.keys.FundHistoricalPrimaryKey;
 
 @Data
 @Entity
-@Table(name="funds_historical")
+@Table(name = "funds_historical")
 @IdClass(FundHistoricalPrimaryKey.class)
 public class FundHistorical {
 
