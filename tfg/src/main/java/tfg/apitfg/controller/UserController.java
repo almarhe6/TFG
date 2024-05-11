@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -19,9 +20,9 @@ public class UserController {
     private final FinancialMapper financialMapper;
     private final IUserService userService;
 
-    @GetMapping("/prueba")
-    public String prueba() {
-        return "probando";
+    @GetMapping()
+    public UserDto getUser(@RequestAttribute String email) {
+        return financialMapper.toDto(userService.findUser(email));
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -40,10 +41,5 @@ public class UserController {
     @PostMapping("/modify")
     public void modifyUser(@RequestParam UserDto userDto) {
         userService.createUser(financialMapper.toEntity(userDto));
-    }
-
-    @GetMapping("/obtain")
-    public UserDto getUser(@RequestParam String email) {
-        return financialMapper.toDto(userService.findUser(email));
     }
 }

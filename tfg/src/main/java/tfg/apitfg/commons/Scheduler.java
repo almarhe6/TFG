@@ -8,23 +8,21 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import tfg.apitfg.model.entity.Wallet;
 import tfg.apitfg.model.keys.FundUserPrimaryKey;
-import tfg.apitfg.repository.FundHistoricalRepository;
-import tfg.apitfg.repository.FundRepository;
 import tfg.apitfg.repository.InvestmentPlanRepository;
 import tfg.apitfg.repository.TransactionRepository;
 import tfg.apitfg.repository.WalletRepository;
 import tfg.apitfg.service.IFundService;
 import tfg.apitfg.service.IUserService;
+import tfg.apitfg.service.IWalletService;
 
 @Component
 @RequiredArgsConstructor
 public class Scheduler {
     private final IUserService userService;
     private final IFundService fundService;
-    private final FundRepository fundRepository;
+    private final IWalletService walletService;
     private final WalletRepository walletRepository;
     private final TransactionRepository transactionRepository;
-    private final FundHistoricalRepository fundHistoricalRepository;
     private final InvestmentPlanRepository investmentPlanRepository;
 
     // Itera sobre las transacciones pendientes, las marca como procesadas y actualiza las carteras
@@ -71,7 +69,7 @@ public class Scheduler {
             var today = LocalDate.now();
 
             investmentPlans.stream().filter(iv -> today.equals(iv.getDay())).forEach(iv -> {
-                fundService.tradeFund(iv.getEmail(), iv.getIsin(), true, iv.getQuantity());
+                walletService.tradeFund(iv.getEmail(), iv.getIsin(), true, iv.getQuantity());
             });
         } catch (DataAccessException e) {
             throw new FinancialHttpException(FinancialExceptionCode.SCHEDULER__ERROR);
