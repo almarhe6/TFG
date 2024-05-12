@@ -70,13 +70,12 @@ public class SecurityConfig implements Filter, WebMvcConfigurer {
                 DecodedJWT decodedJWT = verifier.verify(jwtToken.replace("Bearer ", ""));
                 request.setAttribute("email", decodedJWT.getClaim("email").asString());
                 filterChain.doFilter(request, response);
-            }  catch (BackendHttpException e) {
+            } catch (BackendHttpException e) {
                 throw e;
-            }
-            catch (RuntimeException | ServletException e) {
+            } catch (RuntimeException | ServletException e) {
                 log.error("Error produced while parsing token {}", httpRequest.getRequestURI(), e);
                 httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
-            }catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
                 throw new RuntimeException(ex);
             }
         }

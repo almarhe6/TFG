@@ -69,8 +69,7 @@ public class WalletService implements IWalletService {
             if (investmentPlanRepository
                     .findById(FundUserPrimaryKey.builder().user(user).fund(fund).build())
                     .isPresent()) {
-                throw new BackendHttpException(
-                        BackendExceptionCode.INVESTMENT_PLAN__ALREADY_EXISTS_REPOSITORY_ERROR);
+                throw new BackendHttpException(BackendExceptionCode.INVESTMENT_PLAN__ALREADY_EXISTS_REPOSITORY_ERROR);
             }
 
             investmentPlanRepository.save(InvestmentPlan.builder()
