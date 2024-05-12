@@ -74,7 +74,7 @@ public class Scheduler {
             }
 
         } catch (DataAccessException e) {
-            throw new FinancialHttpException(FinancialExceptionCode.SCHEDULER__ERROR);
+            throw new BackendHttpException(BackendExceptionCode.SCHEDULER__ERROR);
         }
     }
 
@@ -90,7 +90,7 @@ public class Scheduler {
             });
 
         } catch (DataAccessException e) {
-            throw new FinancialHttpException(FinancialExceptionCode.SCHEDULER__ERROR);
+            throw new BackendHttpException(BackendExceptionCode.SCHEDULER__ERROR);
         }
     }
 

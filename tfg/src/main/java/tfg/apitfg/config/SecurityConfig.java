@@ -3,7 +3,6 @@ package tfg.apitfg.config;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
@@ -32,6 +31,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import tfg.apitfg.commons.BackendHttpException;
 
 @Slf4j
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -70,9 +70,14 @@ public class SecurityConfig implements Filter, WebMvcConfigurer {
                 DecodedJWT decodedJWT = verifier.verify(jwtToken.replace("Bearer ", ""));
                 request.setAttribute("email", decodedJWT.getClaim("email").asString());
                 filterChain.doFilter(request, response);
-            } catch (TokenExpiredException | IOException | ServletException | NoSuchAlgorithmException | InvalidKeySpecException e) {
+            }  catch (BackendHttpException e) {
+                throw e;
+            }
+            catch (RuntimeException | ServletException e) {
                 log.error("Error produced while parsing token {}", httpRequest.getRequestURI(), e);
                 httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+            }catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+                throw new RuntimeException(ex);
             }
         }
     }

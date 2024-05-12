@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
-public enum FinancialExceptionCode {
+public enum BackendExceptionCode {
     USER__CREATE_REPOSITORY_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Error creating user in the database"),
     USER__DELETE_REPOSITORY_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Error deleting user in the database"),
     USER__MODIFY_REPOSITORY_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Error modifying user in the database"),

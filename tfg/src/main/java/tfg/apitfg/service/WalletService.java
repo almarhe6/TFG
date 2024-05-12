@@ -8,8 +8,8 @@ import java.util.Random;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
-import tfg.apitfg.commons.FinancialExceptionCode;
-import tfg.apitfg.commons.FinancialHttpException;
+import tfg.apitfg.commons.BackendExceptionCode;
+import tfg.apitfg.commons.BackendHttpException;
 import tfg.apitfg.model.entity.InvestmentPlan;
 import tfg.apitfg.model.entity.Transaction;
 import tfg.apitfg.model.entity.User;
@@ -42,7 +42,7 @@ public class WalletService implements IWalletService {
             return walletMap;
 
         } catch (DataAccessException e) {
-            throw new FinancialHttpException(FinancialExceptionCode.WALLET__FINDING_REPOSITORY_ERROR);
+            throw new BackendHttpException(BackendExceptionCode.WALLET__FINDING_REPOSITORY_ERROR);
         }
     }
 
@@ -52,7 +52,7 @@ public class WalletService implements IWalletService {
             return transactionRepository.findByEmailAndIsinAndEffectDatetimeBetween(email, isin, start, end);
 
         } catch (DataAccessException e) {
-            throw new FinancialHttpException(FinancialExceptionCode.TRANSACTIONS__FINDING_REPOSITORY_ERROR);
+            throw new BackendHttpException(BackendExceptionCode.TRANSACTIONS__FINDING_REPOSITORY_ERROR);
         }
     }
 
@@ -60,7 +60,7 @@ public class WalletService implements IWalletService {
     public void createInvestmentPlan(String email, String isin, Double quantity, int dayOfMonth) {
         try {
             if (dayOfMonth < 1 || dayOfMonth > 31) {
-                throw new FinancialHttpException(FinancialExceptionCode.INVESTMENT_PLAN__INVALID_DAY_OF_MONTH);
+                throw new BackendHttpException(BackendExceptionCode.INVESTMENT_PLAN__INVALID_DAY_OF_MONTH);
             }
 
             var user = userService.findUser(email);
@@ -69,8 +69,8 @@ public class WalletService implements IWalletService {
             if (investmentPlanRepository
                     .findById(FundUserPrimaryKey.builder().user(user).fund(fund).build())
                     .isPresent()) {
-                throw new FinancialHttpException(
-                        FinancialExceptionCode.INVESTMENT_PLAN__ALREADY_EXISTS_REPOSITORY_ERROR);
+                throw new BackendHttpException(
+                        BackendExceptionCode.INVESTMENT_PLAN__ALREADY_EXISTS_REPOSITORY_ERROR);
             }
 
             investmentPlanRepository.save(InvestmentPlan.builder()
@@ -81,7 +81,7 @@ public class WalletService implements IWalletService {
                     .build());
 
         } catch (DataAccessException e) {
-            throw new FinancialHttpException(FinancialExceptionCode.INVESTMENT_PLAN__SAVING_REPOSITORY_ERROR);
+            throw new BackendHttpException(BackendExceptionCode.INVESTMENT_PLAN__SAVING_REPOSITORY_ERROR);
         }
     }
 
@@ -95,13 +95,13 @@ public class WalletService implements IWalletService {
                     FundUserPrimaryKey.builder().user(user).fund(fund).build());
 
             if (investmentPlan.isEmpty()) {
-                throw new FinancialHttpException(FinancialExceptionCode.INVESTMENT_PLAN__NOT_FOUND_REPOSITORY_ERROR);
+                throw new BackendHttpException(BackendExceptionCode.INVESTMENT_PLAN__NOT_FOUND_REPOSITORY_ERROR);
             }
 
             return investmentPlan.get();
 
         } catch (DataAccessException e) {
-            throw new FinancialHttpException(FinancialExceptionCode.INVESTMENT_PLAN__SAVING_REPOSITORY_ERROR);
+            throw new BackendHttpException(BackendExceptionCode.INVESTMENT_PLAN__SAVING_REPOSITORY_ERROR);
         }
     }
 
@@ -112,7 +112,7 @@ public class WalletService implements IWalletService {
             return investmentPlanRepository.findAllByUser(userService.findUser(email));
 
         } catch (DataAccessException e) {
-            throw new FinancialHttpException(FinancialExceptionCode.INVESTMENT_PLAN__NOT_FOUND_REPOSITORY_ERROR);
+            throw new BackendHttpException(BackendExceptionCode.INVESTMENT_PLAN__NOT_FOUND_REPOSITORY_ERROR);
         }
     }
 
@@ -125,7 +125,7 @@ public class WalletService implements IWalletService {
                     FundUserPrimaryKey.builder().fund(fund).user(user).build());
 
         } catch (DataAccessException e) {
-            throw new FinancialHttpException(FinancialExceptionCode.INVESTMENT_PLAN__DELETING_REPOSITORY_ERROR);
+            throw new BackendHttpException(BackendExceptionCode.INVESTMENT_PLAN__DELETING_REPOSITORY_ERROR);
         }
     }
 
@@ -142,7 +142,7 @@ public class WalletService implements IWalletService {
                 var wallet = findWallet(email);
 
                 if (!wallet.containsKey(isin)) {
-                    throw new FinancialHttpException(FinancialExceptionCode.SELL__USER_DOESNT_OWN_FUND);
+                    throw new BackendHttpException(BackendExceptionCode.SELL__USER_DOESNT_OWN_FUND);
                 }
                 var accQuantity = transactionRepository.sumQuantitiesByEmailAndIsinAndNotProcessed(email, isin);
 
@@ -151,7 +151,7 @@ public class WalletService implements IWalletService {
                 }
 
                 if (wallet.get(isin) - (accQuantity + quantity) < 0) {
-                    throw new FinancialHttpException(FinancialExceptionCode.SELL__INSUFFICIENT_CREDIT);
+                    throw new BackendHttpException(BackendExceptionCode.SELL__INSUFFICIENT_CREDIT);
                 }
             }
 
@@ -165,7 +165,7 @@ public class WalletService implements IWalletService {
                     .build());
 
         } catch (DataAccessException e) {
-            throw new FinancialHttpException(FinancialExceptionCode.TRANSACTIONS__SAVING_REPOSITORY_ERROR);
+            throw new BackendHttpException(BackendExceptionCode.TRANSACTIONS__SAVING_REPOSITORY_ERROR);
         }
     }
 
@@ -173,7 +173,7 @@ public class WalletService implements IWalletService {
     private void checkCredit(User user) {
         var randomValue = random.nextDouble();
         if (randomValue > CREDIT_THRESHOLD) {
-            throw new FinancialHttpException(FinancialExceptionCode.CREDIT__NOT_ENOUGH_CREDIT_ERROR);
+            throw new BackendHttpException(BackendExceptionCode.CREDIT__NOT_ENOUGH_CREDIT_ERROR);
         }
     }
 }

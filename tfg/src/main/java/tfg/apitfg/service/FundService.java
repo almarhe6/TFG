@@ -5,8 +5,8 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
-import tfg.apitfg.commons.FinancialExceptionCode;
-import tfg.apitfg.commons.FinancialHttpException;
+import tfg.apitfg.commons.BackendExceptionCode;
+import tfg.apitfg.commons.BackendHttpException;
 import tfg.apitfg.model.entity.Fund;
 import tfg.apitfg.model.entity.FundHistorical;
 import tfg.apitfg.repository.FundHistoricalRepository;
@@ -25,7 +25,7 @@ public class FundService implements IFundService {
         try {
             return fundRepository.findAll();
         } catch (DataAccessException e) {
-            throw new FinancialHttpException(FinancialExceptionCode.FUND__FINDING_REPOSITORY_ERROR);
+            throw new BackendHttpException(BackendExceptionCode.FUND__FINDING_REPOSITORY_ERROR);
         }
     }
 
@@ -36,12 +36,12 @@ public class FundService implements IFundService {
             var fund = fundRepository.findById(isin);
 
             if (fund.isEmpty()) {
-                throw new FinancialHttpException(FinancialExceptionCode.FUND__NOT_FOUND_REPOSITORY_ERROR);
+                throw new BackendHttpException(BackendExceptionCode.FUND__NOT_FOUND_REPOSITORY_ERROR);
             }
 
             return fund.get();
         } catch (DataAccessException e) {
-            throw new FinancialHttpException(FinancialExceptionCode.FUND__FINDING_REPOSITORY_ERROR);
+            throw new BackendHttpException(BackendExceptionCode.FUND__FINDING_REPOSITORY_ERROR);
         }
     }
 
@@ -51,7 +51,7 @@ public class FundService implements IFundService {
             return fundHistoricalRepository.findByIsinAndDateBetween(isin, start, end);
 
         } catch (DataAccessException e) {
-            throw new FinancialHttpException(FinancialExceptionCode.HISTORICAL__FINDING_REPOSITORY_ERROR);
+            throw new BackendHttpException(BackendExceptionCode.HISTORICAL__FINDING_REPOSITORY_ERROR);
         }
     }
 }
