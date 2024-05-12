@@ -5,8 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import tfg.apitfg.commons.FinancialMapper;
@@ -27,19 +27,19 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
-    public void createUser(@RequestParam UserDto userDto) {
+    public void createUser(@RequestBody UserDto userDto) {
         userService.createUser(financialMapper.toEntity(userDto));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/delete")
-    public void deleteUser(@RequestParam UserDto userDto) {
+    public void deleteUser(@RequestBody UserDto userDto) {
         userService.deleteUser(financialMapper.toEntity(userDto));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/modify")
-    public void modifyUser(@RequestParam UserDto userDto) {
-        userService.createUser(financialMapper.toEntity(userDto));
+    public void modifyUser(@RequestBody UserDto userDto) {
+        userService.modifyUser(financialMapper.toEntity(userDto));
     }
 }

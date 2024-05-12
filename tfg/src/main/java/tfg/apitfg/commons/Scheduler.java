@@ -1,11 +1,13 @@
 package tfg.apitfg.commons;
 
+import jakarta.transaction.Transactional;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.time.YearMonth;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import tfg.apitfg.model.entity.InvestmentPlan;
 import tfg.apitfg.model.entity.Wallet;
 import tfg.apitfg.model.keys.FundUserPrimaryKey;
 import tfg.apitfg.repository.InvestmentPlanRepository;
@@ -26,35 +28,50 @@ public class Scheduler {
     private final InvestmentPlanRepository investmentPlanRepository;
 
     // Itera sobre las transacciones pendientes, las marca como procesadas y actualiza las carteras
-    @Scheduled(fixedRate = 30000)
+    @Transactional
+    @Scheduled(fixedRate = 60000)
     public void completeTransaction() {
         try {
-            var newWallet = new ArrayList<Wallet>();
 
             var transactions = transactionRepository.findAllTransactionsPending();
-            transactions.forEach(t -> {
-                t.setProcessed(true);
-                var walletOptional = walletRepository.findById(FundUserPrimaryKey.builder()
-                        .isin(t.getIsin())
-                        .email(t.getEmail())
-                        .build());
-                if (walletOptional.isEmpty()) {
-                    newWallet.add(Wallet.builder()
-                            .isin(t.getIsin())
-                            .email(t.getEmail())
-                            .quantity(t.getQuantity())
-                            .fund(fundService.findFund(t.getIsin()))
-                            .user(userService.findUser(t.getEmail()))
+            if (!transactions.isEmpty()) {
+                transactions.forEach(t -> {
+                    var walletOptional = walletRepository.findById(FundUserPrimaryKey.builder()
+                            .fund(t.getFund())
+                            .user(t.getUser())
                             .build());
-                } else {
-                    var wallet = walletOptional.get();
-                    wallet.setQuantity(
-                            wallet.getQuantity() == null ? t.getQuantity() : wallet.getQuantity() + t.getQuantity());
-                    newWallet.add(wallet);
-                }
-            });
+                    if (walletOptional.isEmpty()) {
+                        // Aqui siempre es en un escenario de compra, ya que el flujo de venta impide vender un fondo
+                        // que no se tiene
+                        walletRepository.save(Wallet.builder()
+                                .quantity(t.getQuantity())
+                                .fund(fundService.findFund(t.getFund().getIsin()))
+                                .user(userService.findUser(t.getUser().getEmail()))
+                                .build());
+                    } else {
+                        var wallet = walletOptional.get();
+                        if (t.isBuySell()) {
+                            // BUYING
+                            wallet.setQuantity(
+                                    wallet.getQuantity() == null
+                                            ? t.getQuantity()
+                                            : wallet.getQuantity() + t.getQuantity());
+                            walletRepository.save(wallet);
+                        } else {
+                            // SELLING
+                            if (wallet.getQuantity() - t.getQuantity() == 0) {
+                                walletRepository.delete(wallet);
+                            } else {
+                                wallet.setQuantity(wallet.getQuantity() - t.getQuantity());
+                                walletRepository.save(wallet);
+                            }
+                        }
+                    }
 
-            walletRepository.saveAll(newWallet);
+                    t.setProcessed(true);
+                    transactionRepository.save(t);
+                });
+            }
 
         } catch (DataAccessException e) {
             throw new FinancialHttpException(FinancialExceptionCode.SCHEDULER__ERROR);
@@ -62,17 +79,32 @@ public class Scheduler {
     }
 
     // Compra de acuerdo a los planes de inversion de los usuarios
+    @Transactional
     @Scheduled(cron = "0 0 9 * * *") // Se ejecuta a las 9 de la mañana todos los días
     public void applyInvestmentPlans() {
         try {
             var investmentPlans = investmentPlanRepository.findAll();
-            var today = LocalDate.now();
 
-            investmentPlans.stream().filter(iv -> today.equals(iv.getDay())).forEach(iv -> {
-                walletService.tradeFund(iv.getEmail(), iv.getIsin(), true, iv.getQuantity());
+            investmentPlans.stream().filter(this::isDayToBuy).forEach(iv -> {
+                walletService.tradeFund(iv.getUser().getEmail(), iv.getFund().getIsin(), true, iv.getQuantity());
             });
+
         } catch (DataAccessException e) {
             throw new FinancialHttpException(FinancialExceptionCode.SCHEDULER__ERROR);
         }
+    }
+
+    private boolean isDayToBuy(InvestmentPlan investmentPlan) {
+        var dayOfInvestment = investmentPlan.getDayOfMonth();
+        var dayOfMonth = LocalDate.now().getDayOfMonth();
+        var daysInMonth = YearMonth.of(
+                        LocalDate.now().getYear(), LocalDate.now().getMonth())
+                .lengthOfMonth();
+
+        if (dayOfInvestment > daysInMonth && daysInMonth == dayOfMonth) {
+            return true;
+        }
+
+        return dayOfInvestment == dayOfMonth;
     }
 }

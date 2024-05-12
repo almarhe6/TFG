@@ -1,6 +1,5 @@
 package tfg.apitfg.service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +11,7 @@ public interface IWalletService {
 
     List<Transaction> findTransactions(String email, String isin, LocalDateTime start, LocalDateTime end);
 
-    void createInvestmentPlan(String email, String isin, Double quantity, LocalDate date);
+    void createInvestmentPlan(String email, String isin, Double quantity, int dayOfMonth);
 
     void deleteInvestmentPlan(String email, String isin);
 

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WalletDto {
-    private String documentNumber;
+    private String email;
     private String isin;
-    private double quantity;
+    private Double quantity;
 }

@@ -1,17 +1,16 @@
 package tfg.apitfg.model.dto;
 
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import tfg.apitfg.model.entity.User;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class InvestmentPlanDto {
-    private User user;
     private String isin;
-    private LocalDateTime date;
+    private int dayOfMonth;
     private double quantity;
 }

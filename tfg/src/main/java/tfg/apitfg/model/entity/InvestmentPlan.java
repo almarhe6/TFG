@@ -7,34 +7,33 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.time.LocalDate;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import tfg.apitfg.model.keys.FundUserPrimaryKey;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "investment_plans")
 @IdClass(FundUserPrimaryKey.class)
 public class InvestmentPlan {
+    @Id
     @ManyToOne
     @JoinColumn(name = "email", referencedColumnName = "email")
     private User user;
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "isin", referencedColumnName = "isin")
     private Fund fund;
 
-    @Id
-    private String email;
-
-    @Id
-    private String isin;
-
     @Column(name = "quantity")
     private double quantity;
 
-    @Column(name = "day")
-    private LocalDate day;
+    @Column(name = "day_of_month")
+    private int dayOfMonth;
 }

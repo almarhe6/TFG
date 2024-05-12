@@ -1,6 +1,5 @@
 package tfg.apitfg.controller;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -33,17 +32,17 @@ public class WalletController {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/{isin}/buy")
-    public void buyFund(@RequestAttribute String email, @RequestParam Double quantity, @PathVariable String isin) {
+    public void buyFund(@RequestAttribute String email, @PathVariable String isin, @RequestParam Double quantity) {
         walletService.tradeFund(email, isin, true, quantity);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/{isin}/sell")
-    public void sellFunds(@RequestAttribute String email, @RequestParam Double quantity, @PathVariable String isin) {
+    public void sellFunds(@RequestAttribute String email, @PathVariable String isin, @RequestParam Double quantity) {
         walletService.tradeFund(email, isin, false, quantity);
     }
 
-    @GetMapping("/transactions/{isin}")
+    @GetMapping("/{isin}/transactions")
     public List<TransactionDto> getTransactions(
             @RequestAttribute String email,
             @PathVariable String isin,
@@ -57,20 +56,20 @@ public class WalletController {
         return financialMapper.investmentPlansToDto(walletService.findInvestmentPlans(email));
     }
 
-    @GetMapping("/investmentPlan/{isin}")
+    @GetMapping("/investmentPlans/{isin}")
     public InvestmentPlanDto findInvestmentPlan(@RequestAttribute String email, @PathVariable String isin) {
         return financialMapper.toDto(walletService.findInvestmentPlan(email, isin));
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/investmentPlan/create")
+    @PostMapping("/investmentPlans/{isin}/create")
     public void createInvestmentPlan(
-            @RequestAttribute String email, @PathVariable String isin, Double quantity, LocalDate date) {
-        walletService.createInvestmentPlan(email, isin, quantity, date);
+            @RequestAttribute String email, @PathVariable String isin, Double quantity, @RequestParam int dayOfMonth) {
+        walletService.createInvestmentPlan(email, isin, quantity, dayOfMonth);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/investmentPlan/delete")
+    @PostMapping("/investmentPlans/{isin}/delete")
     public void deleteInvestmentPlan(@RequestAttribute String email, @PathVariable String isin) {
         walletService.deleteInvestmentPlan(email, isin);
     }

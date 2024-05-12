@@ -30,7 +30,10 @@ public enum FinancialExceptionCode {
             HttpStatus.INTERNAL_SERVER_ERROR, "Error finding investment plan from the database"),
     INVESTMENT_PLAN__DELETING_REPOSITORY_ERROR(
             HttpStatus.INTERNAL_SERVER_ERROR, "Error deleting investment plan from the database"),
-    SCHEDULER__ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Error in Scheduler");
+    INVESTMENT_PLAN__INVALID_DAY_OF_MONTH(HttpStatus.BAD_REQUEST, "The day of month must be beetwen 0 and 31"),
+    SCHEDULER__ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Error in Scheduler"),
+    SELL__USER_DOESNT_OWN_FUND(HttpStatus.INTERNAL_SERVER_ERROR, "The fund doesnt belong to the user"),
+    SELL__INSUFFICIENT_CREDIT(HttpStatus.PAYMENT_REQUIRED, "Insufficient credits to sell");
 
     private final HttpStatus status;
     private final String description;

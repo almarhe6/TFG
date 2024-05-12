@@ -1,20 +1,23 @@
 package tfg.apitfg.model.dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class FundHistoricalDto {
     private String isin;
-    private LocalDateTime date;
-    private double rentMonth;
-    private double rentYear;
-    private double rent5Year;
-    private double rent10Year;
-    private double rent20Year;
-    private double rent;
+    private LocalDate date;
+    private Double price;
+    private Double rentDay;
+    private Double rentMonth;
+    private Double rentYear;
+    private Double rent5Year;
+    private Double rent10Year;
+    private Double rent20Year;
 }

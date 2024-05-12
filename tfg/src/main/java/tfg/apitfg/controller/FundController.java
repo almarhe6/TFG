@@ -21,7 +21,7 @@ public class FundController {
     private final FinancialMapper financialMapper;
 
     @GetMapping()
-    public List<FundDto> findFunds() {
+    public List<String> findFunds() {
         return financialMapper.fundsToDto(fundService.findFunds());
     }
 

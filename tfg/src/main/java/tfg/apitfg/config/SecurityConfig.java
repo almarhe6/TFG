@@ -3,16 +3,20 @@ package tfg.apitfg.config;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.RSAPublicKey;
+import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPublicKeySpec;
 import java.util.Base64;
 import lombok.RequiredArgsConstructor;
@@ -66,7 +70,7 @@ public class SecurityConfig implements Filter, WebMvcConfigurer {
                 DecodedJWT decodedJWT = verifier.verify(jwtToken.replace("Bearer ", ""));
                 request.setAttribute("email", decodedJWT.getClaim("email").asString());
                 filterChain.doFilter(request, response);
-            } catch (Exception e) {
+            } catch (TokenExpiredException | IOException | ServletException | NoSuchAlgorithmException | InvalidKeySpecException e) {
                 log.error("Error produced while parsing token {}", httpRequest.getRequestURI(), e);
                 httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
             }

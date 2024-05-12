@@ -11,8 +11,8 @@ import tfg.apitfg.model.keys.FundUserPrimaryKey;
 
 @Repository
 public interface TransactionRepository extends CrudRepository<Transaction, FundUserPrimaryKey> {
-    @Query("SELECT t FROM Transaction t " + "WHERE t.email = :email "
-            + "AND t.isin = :isin "
+    @Query("SELECT t FROM Transaction t " + "WHERE t.user.email = :email "
+            + "AND t.fund.isin = :isin "
             + "AND t.effectDateTime BETWEEN :startDate AND :endDate")
     List<Transaction> findByEmailAndIsinAndEffectDatetimeBetween(
             @Param("email") String email,
@@ -22,4 +22,9 @@ public interface TransactionRepository extends CrudRepository<Transaction, FundU
 
     @Query("SELECT t FROM Transaction t WHERE t.processed = false")
     List<Transaction> findAllTransactionsPending();
+
+    @Query("SELECT SUM(t.quantity) FROM Transaction t " + "WHERE t.user.email = :email "
+            + "AND t.fund.isin = :isin "
+            + "AND t.processed = false")
+    Double sumQuantitiesByEmailAndIsinAndNotProcessed(@Param("email") String email, @Param("isin") String isin);
 }

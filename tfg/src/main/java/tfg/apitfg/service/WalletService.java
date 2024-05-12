@@ -1,6 +1,5 @@
 package tfg.apitfg.service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -36,9 +35,9 @@ public class WalletService implements IWalletService {
         try {
 
             var walletMap = new HashMap<String, Double>();
-            var wallet = walletRepository.findByEmail(email);
+            var wallet = walletRepository.findByUser(userService.findUser(email));
 
-            wallet.forEach(w -> walletMap.put(w.getIsin(), w.getQuantity()));
+            wallet.forEach(w -> walletMap.put(w.getFund().getIsin(), w.getQuantity()));
 
             return walletMap;
 
@@ -58,23 +57,27 @@ public class WalletService implements IWalletService {
     }
 
     @Override
-    public void createInvestmentPlan(String email, String isin, Double quantity, LocalDate date) {
+    public void createInvestmentPlan(String email, String isin, Double quantity, int dayOfMonth) {
         try {
+            if (dayOfMonth < 1 || dayOfMonth > 31) {
+                throw new FinancialHttpException(FinancialExceptionCode.INVESTMENT_PLAN__INVALID_DAY_OF_MONTH);
+            }
+
+            var user = userService.findUser(email);
+            var fund = fundService.findFund(isin);
+
             if (investmentPlanRepository
-                    .findById(
-                            FundUserPrimaryKey.builder().email(email).isin(isin).build())
+                    .findById(FundUserPrimaryKey.builder().user(user).fund(fund).build())
                     .isPresent()) {
                 throw new FinancialHttpException(
                         FinancialExceptionCode.INVESTMENT_PLAN__ALREADY_EXISTS_REPOSITORY_ERROR);
             }
 
             investmentPlanRepository.save(InvestmentPlan.builder()
-                    .day(date)
+                    .dayOfMonth(dayOfMonth)
                     .quantity(quantity)
-                    .email(email)
-                    .isin(isin)
-                    .fund(fundService.findFund(isin))
-                    .user(userService.findUser(email))
+                    .user(user)
+                    .fund(fund)
                     .build());
 
         } catch (DataAccessException e) {
@@ -85,9 +88,11 @@ public class WalletService implements IWalletService {
     @Override
     public InvestmentPlan findInvestmentPlan(String email, String isin) {
         try {
+            var user = userService.findUser(email);
+            var fund = fundService.findFund(isin);
 
             var investmentPlan = investmentPlanRepository.findById(
-                    FundUserPrimaryKey.builder().email(email).isin(isin).build());
+                    FundUserPrimaryKey.builder().user(user).fund(fund).build());
 
             if (investmentPlan.isEmpty()) {
                 throw new FinancialHttpException(FinancialExceptionCode.INVESTMENT_PLAN__NOT_FOUND_REPOSITORY_ERROR);
@@ -104,7 +109,7 @@ public class WalletService implements IWalletService {
     public List<InvestmentPlan> findInvestmentPlans(String email) {
         try {
 
-            return investmentPlanRepository.findAllByEmail(email);
+            return investmentPlanRepository.findAllByUser(userService.findUser(email));
 
         } catch (DataAccessException e) {
             throw new FinancialHttpException(FinancialExceptionCode.INVESTMENT_PLAN__NOT_FOUND_REPOSITORY_ERROR);
@@ -114,9 +119,10 @@ public class WalletService implements IWalletService {
     @Override
     public void deleteInvestmentPlan(String email, String isin) {
         try {
-
-            transactionRepository.deleteById(
-                    FundUserPrimaryKey.builder().email(email).isin(isin).build());
+            var user = userService.findUser(email);
+            var fund = fundService.findFund(isin);
+            investmentPlanRepository.deleteById(
+                    FundUserPrimaryKey.builder().fund(fund).user(user).build());
 
         } catch (DataAccessException e) {
             throw new FinancialHttpException(FinancialExceptionCode.INVESTMENT_PLAN__DELETING_REPOSITORY_ERROR);
@@ -127,20 +133,35 @@ public class WalletService implements IWalletService {
     public void tradeFund(String email, String isin, boolean buyOrSell, double quantity) {
         try {
             var user = userService.findUser(email);
-
+            var fund = fundService.findFund(isin);
+            // BUYING
             if (buyOrSell) {
                 checkCredit(user);
+            } else {
+                // SELLING
+                var wallet = findWallet(email);
+
+                if (!wallet.containsKey(isin)) {
+                    throw new FinancialHttpException(FinancialExceptionCode.SELL__USER_DOESNT_OWN_FUND);
+                }
+                var accQuantity = transactionRepository.sumQuantitiesByEmailAndIsinAndNotProcessed(email, isin);
+
+                if (accQuantity == null) {
+                    accQuantity = 0.0;
+                }
+
+                if (wallet.get(isin) - (accQuantity + quantity) < 0) {
+                    throw new FinancialHttpException(FinancialExceptionCode.SELL__INSUFFICIENT_CREDIT);
+                }
             }
 
             transactionRepository.save(Transaction.builder()
-                    .email(email)
-                    .isin(isin)
                     .buySell(buyOrSell)
                     .processed(false)
                     .quantity(quantity)
                     .effectDateTime(LocalDateTime.now())
                     .user(user)
-                    .fund(fundService.findFund(isin))
+                    .fund(fund)
                     .build());
 
         } catch (DataAccessException e) {

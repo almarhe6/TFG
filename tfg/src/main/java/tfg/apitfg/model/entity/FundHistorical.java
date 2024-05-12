@@ -17,35 +17,33 @@ import tfg.apitfg.model.keys.FundHistoricalPrimaryKey;
 @IdClass(FundHistoricalPrimaryKey.class)
 public class FundHistorical {
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "isin", referencedColumnName = "isin")
     private Fund fund;
-
-    @Id
-    private String isin;
 
     @Id
     @Column(name = "date")
     private LocalDate date;
 
     @Column(name = "price")
-    private double price;
-
-    @Column(name = "rent_mont")
-    private double rentMont;
-
-    @Column(name = "rent_year")
-    private double rentYear;
-
-    @Column(name = "rent_5year")
-    private double rent5Year;
-
-    @Column(name = "rent_10year")
-    private double rent10Year;
-
-    @Column(name = "rent_20year")
-    private double rent20Year;
+    private Double price;
 
     @Column(name = "rent")
-    private double rent;
+    private Double rentDay;
+
+    @Column(name = "rent_mont")
+    private Double rentMont;
+
+    @Column(name = "rent_year")
+    private Double rentYear;
+
+    @Column(name = "rent_5year")
+    private Double rent5Year;
+
+    @Column(name = "rent_10year")
+    private Double rent10Year;
+
+    @Column(name = "rent_20year")
+    private Double rent20Year;
 }
