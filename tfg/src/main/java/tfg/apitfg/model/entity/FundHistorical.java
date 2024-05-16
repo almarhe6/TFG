@@ -7,6 +7,7 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.io.Serializable;
 import java.time.LocalDate;
 import lombok.Data;
 import tfg.apitfg.model.keys.FundHistoricalPrimaryKey;
@@ -15,7 +16,7 @@ import tfg.apitfg.model.keys.FundHistoricalPrimaryKey;
 @Entity
 @Table(name = "funds_historical")
 @IdClass(FundHistoricalPrimaryKey.class)
-public class FundHistorical {
+public class FundHistorical implements Serializable {
 
     @Id
     @ManyToOne

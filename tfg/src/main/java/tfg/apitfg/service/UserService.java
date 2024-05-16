@@ -1,6 +1,7 @@
 package tfg.apitfg.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import tfg.apitfg.commons.BackendExceptionCode;
@@ -12,6 +13,7 @@ import tfg.apitfg.repository.UserRepository;
 @RequiredArgsConstructor
 public class UserService implements IUserService {
     private final UserRepository userRepository;
+    private final ICacheService cacheService;
 
     @Override
     public void createUser(User user) {
@@ -23,6 +25,7 @@ public class UserService implements IUserService {
     }
 
     @Override
+    @CacheEvict(value = "users", key = "#user.email")
     public void deleteUser(User user) {
         try {
             userRepository.deleteById(user.getEmail());
@@ -32,6 +35,7 @@ public class UserService implements IUserService {
     }
 
     @Override
+    @CacheEvict(value = "users", key = "#user.email")
     public void modifyUser(User user) {
         try {
             var oldUser = userRepository.findById(user.getEmail());
@@ -73,16 +77,9 @@ public class UserService implements IUserService {
     @Override
     public User findUser(String email) {
         try {
-            var user = userRepository.findById(email);
-
-            if (user.isEmpty()) {
-                throw new BackendHttpException(BackendExceptionCode.USER__NOT_FOUND_REPOSITORY_ERROR);
-            }
-
-            return user.get();
-
-        } catch (DataAccessException e) {
-            throw new BackendHttpException(BackendExceptionCode.USER__FINDING_REPOSITORY_ERROR);
+            return cacheService.findUserFromCache(email);
+        } catch (Exception e) {
+            return cacheService.findUserFromDatabase(email);
         }
     }
 }

@@ -1,34 +1,51 @@
 package tfg.apitfg;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import jakarta.transaction.Transactional;
+import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.test.web.servlet.MockMvc;
-import tfg.apitfg.controller.WalletController;
+import tfg.apitfg.service.FundService;
+import tfg.apitfg.service.WalletService;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Transactional
 @AutoConfigureMockMvc
 class ApiTfgApplicationTests {
 
     @Autowired
-    private WalletController walletController;
+    private WalletService walletService;
 
     @Autowired
-    private MockMvc mockMvc;
-
-    @LocalServerPort
-    private int port;
-
-    @Autowired
-    private TestRestTemplate restTemplate;
+    private FundService fundService;
 
     @Test
-    void contextLoads() {
-        assertThat(walletController).isNotNull();
+    void testWallet() {
+        var wallet = walletService.findWallet("alejandromartorellhernandez@gmail.com");
+        assertEquals(wallet.get("IE00B03HCZ61"), 500);
+    }
+
+    @Test
+    void testFunds() throws Exception {
+        var funds = fundService.findFunds();
+        assert (!funds.isEmpty());
+    }
+
+    @Test
+    public void testCreateTransactions() {
+
+        walletService.tradeFund("robe@mail.com", "LU0836512615", true, 300);
+
+        var buyTransactions = walletService.findTransactions(
+                "robe@mail.com", "LU0836512615", LocalDateTime.now().minusMinutes(1), LocalDateTime.now());
+        assertFalse(buyTransactions.isEmpty());
+        var buyTransaction = buyTransactions.get(0);
+        assertEquals(300, buyTransaction.getQuantity());
+        assertTrue(buyTransaction.isBuySell());
     }
 }

@@ -5,11 +5,7 @@ Creados entities mediante jpa
 
 
 curl --location --request POST 'https://oauth2.googleapis.com/token' \
---header 'Authorization: Bearer ya29.a0AXooCgsKK2GFRwQbkbqEAlDW5T1atJ59rC4rGAHVgupbO_KaroEX6vMzSrhmLVQvNDrXMkiMdXv2_LHvAhd9mUY1m3mpHepVmG36FhjA4moIhp87KBEPtACVszCrqRo-1qfliysOy4wNAEJuwtISmMISCVqGapIlG-h7WMwGsAaCgYKAfMSARMSFQHGX2MiuLrv74dVouhVEIQlvrEWaw0177'
-
-auth URL: https://accounts.google.com/o/oauth2/auth
 acces token url : https://accounts.google.com/o/oauth2/token
-client id : 683776942617-61k7okql535u11c1hvlj7pmh66fr42hd.apps.googleusercontent.com
 
-clien secret: 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
 scope: https://www.googleapis.com/auth/userinfo.email
+la cache solo se aplica a fund y user. El propósito de la app provoca que el usuario no entre mucho a la misma por lo que es el scheduler, encargado de aplicar los planes de inversión el que más utiliza la cache, es por esto que el tiempo de cache se establece alto, ya que getUser() y getFund() son lós métodos más utilizados"

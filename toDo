@@ -4,8 +4,8 @@
 -Crear Servicios -> hecho
 -Crear scheduler -> hecho
 -Modificar oauth2 para que devuelva un jwt de autorizacion -> hecho
--Probar servicios
--Añadir tests unitarios
--Añadir cache de redis
--Añadir graylog 
+-Probar servicios -> hecho
+-Añadir tests unitarios -> hecho
+-Añadir cache de redis ->hecho
+-Añadir graylog -> hecho 
 -Migrar todo a aws

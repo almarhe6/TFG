@@ -16,7 +16,6 @@ public class APIError {
     private String errorType;
     private String errorKey;
     private String errorDescription;
-    // TO DO remove this field after proper error handling is perform
     private String errorCode;
 
     public String getErrorKey() {
