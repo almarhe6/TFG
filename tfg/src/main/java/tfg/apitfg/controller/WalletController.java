@@ -31,18 +31,18 @@ public class WalletController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/{isin}/buy")
+    @PostMapping("/buy/{isin}")
     public void buyFund(@RequestAttribute String email, @PathVariable String isin, @RequestParam Double quantity) {
         walletService.tradeFund(email, isin, true, quantity);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/{isin}/sell")
+    @PostMapping("/sell/{isin}")
     public void sellFunds(@RequestAttribute String email, @PathVariable String isin, @RequestParam Double quantity) {
         walletService.tradeFund(email, isin, false, quantity);
     }
 
-    @GetMapping("/{isin}/transactions")
+    @GetMapping("/transactions/{isin}")
     public List<TransactionDto> getTransactions(
             @RequestAttribute String email,
             @PathVariable String isin,
