@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 16.2 (Debian 16.2-1.pgdg120+2)
--- Dumped by pg_dump version 16.2 (Debian 16.2-1.pgdg120+2)
+-- Dumped from database version 15.6 (Homebrew)
+-- Dumped by pg_dump version 15.6 (Homebrew)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -21,25 +21,25 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: funds; Type: TABLE; Schema: public; Owner: postgres
+-- Name: funds; Type: TABLE; Schema: public; Owner: alejandromartorellhernandez
 --
 
 CREATE TABLE public.funds (
-    isin character(12) NOT NULL,
-    name character(60),
-    company character(30),
-    index character(30)
+    isin character varying(255) NOT NULL,
+    name character varying(255),
+    company character varying(255),
+    index character varying(255)
 );
 
 
-ALTER TABLE public.funds OWNER TO postgres;
+ALTER TABLE public.funds OWNER TO alejandromartorellhernandez;
 
 --
--- Name: funds_historical; Type: TABLE; Schema: public; Owner: postgres
+-- Name: funds_historical; Type: TABLE; Schema: public; Owner: alejandromartorellhernandez
 --
 
 CREATE TABLE public.funds_historical (
-    isin character(12) NOT NULL,
+    isin character varying(255) NOT NULL,
     date date NOT NULL,
     price double precision,
     rent_mont double precision,
@@ -51,111 +51,82 @@ CREATE TABLE public.funds_historical (
 );
 
 
-ALTER TABLE public.funds_historical OWNER TO postgres;
+ALTER TABLE public.funds_historical OWNER TO alejandromartorellhernandez;
 
 --
--- Name: investment_plans; Type: TABLE; Schema: public; Owner: postgres
+-- Name: investment_plans; Type: TABLE; Schema: public; Owner: alejandromartorellhernandez
 --
 
 CREATE TABLE public.investment_plans (
-    isin character(12) NOT NULL,
+    isin character varying(255) NOT NULL,
     quantity double precision,
-    day timestamp without time zone,
-    email character(40) NOT NULL
+    email character varying(255) NOT NULL,
+    day_of_month integer
 );
 
 
-ALTER TABLE public.investment_plans OWNER TO postgres;
+ALTER TABLE public.investment_plans OWNER TO alejandromartorellhernandez;
 
 --
--- Name: transactions; Type: TABLE; Schema: public; Owner: postgres
+-- Name: transactions; Type: TABLE; Schema: public; Owner: alejandromartorellhernandez
 --
 
 CREATE TABLE public.transactions (
     buy_sell boolean,
-    isin character(12) NOT NULL,
+    isin character varying(255) NOT NULL,
     quantity double precision,
-    id integer NOT NULL,
     processed boolean,
-    email character(40) NOT NULL
+    email character varying(255) NOT NULL,
+    effect_datetime timestamp(6) without time zone NOT NULL
 );
 
 
-ALTER TABLE public.transactions OWNER TO postgres;
+ALTER TABLE public.transactions OWNER TO alejandromartorellhernandez;
 
 --
--- Name: transactions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.transactions_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER SEQUENCE public.transactions_id_seq OWNER TO postgres;
-
---
--- Name: transactions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.transactions_id_seq OWNED BY public.transactions.id;
-
-
---
--- Name: users; Type: TABLE; Schema: public; Owner: postgres
+-- Name: users; Type: TABLE; Schema: public; Owner: alejandromartorellhernandez
 --
 
 CREATE TABLE public.users (
-    document_number character(9) NOT NULL,
-    phone character(9),
-    email character(40) NOT NULL,
-    name character(20),
-    surname character(40),
-    card_number character(16)
+    document_number character varying(255) NOT NULL,
+    phone character varying(255),
+    email character varying(255) NOT NULL,
+    name character varying(255),
+    surname character varying(255),
+    card_number character varying(255)
 );
 
 
-ALTER TABLE public.users OWNER TO postgres;
+ALTER TABLE public.users OWNER TO alejandromartorellhernandez;
 
 --
--- Name: wallet; Type: TABLE; Schema: public; Owner: postgres
+-- Name: wallet; Type: TABLE; Schema: public; Owner: alejandromartorellhernandez
 --
 
 CREATE TABLE public.wallet (
-    isin character(12) NOT NULL,
+    isin character varying(255) NOT NULL,
     quantity double precision,
-    email character(40) NOT NULL
+    email character varying(255) NOT NULL
 );
 
 
-ALTER TABLE public.wallet OWNER TO postgres;
+ALTER TABLE public.wallet OWNER TO alejandromartorellhernandez;
 
 --
--- Name: transactions id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.transactions ALTER COLUMN id SET DEFAULT nextval('public.transactions_id_seq'::regclass);
-
-
---
--- Data for Name: funds; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: funds; Type: TABLE DATA; Schema: public; Owner: alejandromartorellhernandez
 --
 
 COPY public.funds (isin, name, company, index) FROM stdin;
-IE00B03HCZ61	Vanguard Global Stock Index Fund Investor EUR Accumulation  	The Vanguard Group Inc.       	World                         
-LU0996182563	Amundi Index Solutions - Amundi Index MSCI World AE-C       	Amundi                        	World                         
-LU0836512615	Shares World Equity Index Fund (LU) N7 EUR                  	BlackRock Inc.                	World                         
-IE0007472990	Vanguard Euro Government Bond Index Fund EUR Acc            	The Vanguard Group Inc.       	Europe                        
-IE00B4XCK338	iShares Ultra High Quality Euro Government Bond Index       	Blacrock Inc.                 	Europe                        
+IE00B03HCZ61	Vanguard Global Stock Index Fund Investor EUR Accumulation	The Vanguard Group Inc.	World
+LU0996182563	Amundi Index Solutions - Amundi Index MSCI World AE-C	Amundi	World
+LU0836512615	Shares World Equity Index Fund (LU) N7 EUR	BlackRock Inc.	World
+IE0007472990	Vanguard Euro Government Bond Index Fund EUR Acc	The Vanguard Group Inc.	Europe
+IE00B4XCK338	iShares Ultra High Quality Euro Government Bond Index	Blacrock Inc.	Europe
 \.
 
 
 --
--- Data for Name: funds_historical; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: funds_historical; Type: TABLE DATA; Schema: public; Owner: alejandromartorellhernandez
 --
 
 COPY public.funds_historical (isin, date, price, rent_mont, rent_year, rent_5year, rent_10year, rent_20year, rent) FROM stdin;
@@ -189,52 +160,56 @@ LU0996182563	2024-05-01	303.67999267578125	\N	\N	\N	\N	\N	1.2469127838677045
 LU0836512615	2024-05-01	299.1600036621094	\N	\N	\N	\N	\N	0.2681386076635579
 IE0007472990	2024-05-01	206.6916046142578	\N	\N	\N	\N	\N	0.8777259792516778
 IE00B4XCK338	2024-05-01	10.836000442504883	\N	\N	\N	\N	\N	0.7906244530743199
+IE00B03HCZ61	2024-05-02	43.829200744628906	\N	\N	\N	\N	\N	-1.0408590222050729
+LU0996182563	2024-05-02	303.67999267578125	\N	\N	\N	\N	\N	0
+LU0836512615	2024-05-02	299.04998779296875	\N	\N	\N	\N	\N	-0.03677492572332096
+IE0007472990	2024-05-02	205.76010131835938	\N	\N	\N	\N	\N	-0.4506730196598326
+IE00B4XCK338	2024-05-02	10.782999992370605	\N	\N	\N	\N	\N	-0.4891145069206512
+IE00B03HCZ61	2024-05-06	44.07170104980469	\N	\N	\N	\N	\N	0.5532847988461179
+LU0996182563	2024-05-06	302.1700134277344	\N	\N	\N	\N	\N	-0.49722710895181643
+LU0836512615	2024-05-06	301.4800109863281	\N	\N	\N	\N	\N	0.8125809371514409
+IE0007472990	2024-05-06	206.26800537109375	\N	\N	\N	\N	\N	0.24684282787581238
+IE00B4XCK338	2024-05-06	10.809000015258789	\N	\N	\N	\N	\N	0.2411204943575965
 \.
 
 
 --
--- Data for Name: investment_plans; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: investment_plans; Type: TABLE DATA; Schema: public; Owner: alejandromartorellhernandez
 --
 
-COPY public.investment_plans (isin, quantity, day, email) FROM stdin;
+COPY public.investment_plans (isin, quantity, email, day_of_month) FROM stdin;
 \.
 
 
 --
--- Data for Name: transactions; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: transactions; Type: TABLE DATA; Schema: public; Owner: alejandromartorellhernandez
 --
 
-COPY public.transactions (buy_sell, isin, quantity, id, processed, email) FROM stdin;
+COPY public.transactions (buy_sell, isin, quantity, processed, email, effect_datetime) FROM stdin;
 \.
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: alejandromartorellhernandez
 --
 
 COPY public.users (document_number, phone, email, name, surname, card_number) FROM stdin;
-11111111A	688888888	robe@mail.com                           	Roberto             	Iniesta Ojea                            	1111222233334444
-22222222B	677777777	apla@mail.com                           	Albert              	Pla i Alvarez                           	4444333322221111
+11111111A	688888888	robe@mail.com	Roberto	Iniesta Ojea	1111222233334444
+22222222B	677777777	apla@mail.com	Albert	Pla i Alvarez	4444333322221111
 \.
 
 
 --
--- Data for Name: wallet; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: wallet; Type: TABLE DATA; Schema: public; Owner: alejandromartorellhernandez
 --
 
 COPY public.wallet (isin, quantity, email) FROM stdin;
+IE00B03HCZ61	500	robe@mail.com
 \.
 
 
 --
--- Name: transactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.transactions_id_seq', 1, false);
-
-
---
--- Name: users email; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: users email; Type: CONSTRAINT; Schema: public; Owner: alejandromartorellhernandez
 --
 
 ALTER TABLE ONLY public.users
@@ -242,7 +217,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: funds_historical funds_historical_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: funds_historical funds_historical_pkey; Type: CONSTRAINT; Schema: public; Owner: alejandromartorellhernandez
 --
 
 ALTER TABLE ONLY public.funds_historical
@@ -250,7 +225,7 @@ ALTER TABLE ONLY public.funds_historical
 
 
 --
--- Name: funds funds_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: funds funds_pkey; Type: CONSTRAINT; Schema: public; Owner: alejandromartorellhernandez
 --
 
 ALTER TABLE ONLY public.funds
@@ -258,23 +233,15 @@ ALTER TABLE ONLY public.funds
 
 
 --
--- Name: investment_plans pk_invplans; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.investment_plans
-    ADD CONSTRAINT pk_invplans PRIMARY KEY (email, isin);
-
-
---
--- Name: transactions pk_transactions; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: transactions pk_transactions; Type: CONSTRAINT; Schema: public; Owner: alejandromartorellhernandez
 --
 
 ALTER TABLE ONLY public.transactions
-    ADD CONSTRAINT pk_transactions PRIMARY KEY (email, isin);
+    ADD CONSTRAINT pk_transactions PRIMARY KEY (email, isin, effect_datetime);
 
 
 --
--- Name: wallet pk_wallet; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: wallet pk_wallet; Type: CONSTRAINT; Schema: public; Owner: alejandromartorellhernandez
 --
 
 ALTER TABLE ONLY public.wallet
@@ -282,7 +249,7 @@ ALTER TABLE ONLY public.wallet
 
 
 --
--- Name: investment_plans email_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: investment_plans email_foreign; Type: FK CONSTRAINT; Schema: public; Owner: alejandromartorellhernandez
 --
 
 ALTER TABLE ONLY public.investment_plans
@@ -290,7 +257,15 @@ ALTER TABLE ONLY public.investment_plans
 
 
 --
--- Name: wallet email_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: transactions email_foreign; Type: FK CONSTRAINT; Schema: public; Owner: alejandromartorellhernandez
+--
+
+ALTER TABLE ONLY public.transactions
+    ADD CONSTRAINT email_foreign FOREIGN KEY (email) REFERENCES public.users(email);
+
+
+--
+-- Name: wallet email_foreign; Type: FK CONSTRAINT; Schema: public; Owner: alejandromartorellhernandez
 --
 
 ALTER TABLE ONLY public.wallet
@@ -298,15 +273,7 @@ ALTER TABLE ONLY public.wallet
 
 
 --
--- Name: transactions email_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.transactions
-    ADD CONSTRAINT email_foreign FOREIGN KEY (email) REFERENCES public.users(email);
-
-
---
--- Name: funds_historical isin_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: funds_historical isin_foreign; Type: FK CONSTRAINT; Schema: public; Owner: alejandromartorellhernandez
 --
 
 ALTER TABLE ONLY public.funds_historical
@@ -314,7 +281,7 @@ ALTER TABLE ONLY public.funds_historical
 
 
 --
--- Name: investment_plans isin_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: investment_plans isin_foreign; Type: FK CONSTRAINT; Schema: public; Owner: alejandromartorellhernandez
 --
 
 ALTER TABLE ONLY public.investment_plans
@@ -322,7 +289,7 @@ ALTER TABLE ONLY public.investment_plans
 
 
 --
--- Name: transactions isin_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: transactions isin_foreign; Type: FK CONSTRAINT; Schema: public; Owner: alejandromartorellhernandez
 --
 
 ALTER TABLE ONLY public.transactions
@@ -330,7 +297,7 @@ ALTER TABLE ONLY public.transactions
 
 
 --
--- Name: wallet isin_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: wallet isin_foreign; Type: FK CONSTRAINT; Schema: public; Owner: alejandromartorellhernandez
 --
 
 ALTER TABLE ONLY public.wallet
