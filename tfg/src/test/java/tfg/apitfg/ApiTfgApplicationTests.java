@@ -26,7 +26,7 @@ class ApiTfgApplicationTests {
 
     @Test
     void testWallet() {
-        var wallet = walletService.findWallet("alejandromartorellhernandez@gmail.com");
+        var wallet = walletService.findWallet("robe@gmail.com");
         assertEquals(wallet.get("IE00B03HCZ61"), 500);
     }
 
