@@ -1,0 +1,580 @@
+{
+	"info": {
+		"_postman_id": "168f19d7-2772-40ee-a748-8297383fa1e1",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22087850"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "getUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImEzYjc2MmY4NzFjZGIzYmFlMDA0NGM2NDk2MjJmYzEzOTZlZGEzZTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzg0MDY5NDU5MjI0MDAzODQxIiwiZW1haWwiOiJhbGVqYW5kcm9tYXJ0b3JlbGxoZXJuYW5kZXpAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJPQTlYemVwU0Fnc05NUmtGTWFXVmNBIiwiaWF0IjoxNzE1NTA0NjEwLCJleHAiOjE3MTU1MDgyMTB9.fvatzclcueK0AOkkZoLne_hHraSp-AZI6wO5LWGXzKzw4XhkbFS-d_UU_L2U7jHwf-uEFK67solAtmbs_Kr0XH4W1dtzAB9mTUqB_ahbOG4FiQLJQ_xCYLXCRwhI9krDhVITkKw_Ls0IZnrEaAPk4Vp1MWZ-6UJ2DoA58Od6c58X2N0KLPvjhK_lmfM1R4Yx3huVDWj3IwT8KBiXxUIvFIrG9UvooL4gzbtnnMvnI2VKRDyLIsQAfETpX7EqvHM5tp2niXqQeLeScayCFnC-d46y5V6PVanISjX67Sx0WbxwM0kknbhjW8vRKrYCtqEKpHYB73B0deWH_DnWQXVlsA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/private/user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modifyUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImEzYjc2MmY4NzFjZGIzYmFlMDA0NGM2NDk2MjJmYzEzOTZlZGEzZTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzg0MDY5NDU5MjI0MDAzODQxIiwiZW1haWwiOiJhbGVqYW5kcm9tYXJ0b3JlbGxoZXJuYW5kZXpAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJPQTlYemVwU0Fnc05NUmtGTWFXVmNBIiwiaWF0IjoxNzE1NTA0NjEwLCJleHAiOjE3MTU1MDgyMTB9.fvatzclcueK0AOkkZoLne_hHraSp-AZI6wO5LWGXzKzw4XhkbFS-d_UU_L2U7jHwf-uEFK67solAtmbs_Kr0XH4W1dtzAB9mTUqB_ahbOG4FiQLJQ_xCYLXCRwhI9krDhVITkKw_Ls0IZnrEaAPk4Vp1MWZ-6UJ2DoA58Od6c58X2N0KLPvjhK_lmfM1R4Yx3huVDWj3IwT8KBiXxUIvFIrG9UvooL4gzbtnnMvnI2VKRDyLIsQAfETpX7EqvHM5tp2niXqQeLeScayCFnC-d46y5V6PVanISjX67Sx0WbxwM0kknbhjW8vRKrYCtqEKpHYB73B0deWH_DnWQXVlsA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"documentNumber\": \"48888888T\",\n    \"phone\": \"634626677\",\n    \"email\": \"alejandromartorellhernandez@gmail.com\",\n    \"name\": \"Alex\",\n    \"surname\": \"Martorell\",\n    \"cardNumber\": \"219889910239189\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/private/user/modify",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"user",
+								"modify"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "fund",
+			"item": [
+				{
+					"name": "getFunds",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/private/funds",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"funds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFund",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImEzYjc2MmY4NzFjZGIzYmFlMDA0NGM2NDk2MjJmYzEzOTZlZGEzZTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzg0MDY5NDU5MjI0MDAzODQxIiwiZW1haWwiOiJhbGVqYW5kcm9tYXJ0b3JlbGxoZXJuYW5kZXpAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJPQTlYemVwU0Fnc05NUmtGTWFXVmNBIiwiaWF0IjoxNzE1NTA0NjEwLCJleHAiOjE3MTU1MDgyMTB9.fvatzclcueK0AOkkZoLne_hHraSp-AZI6wO5LWGXzKzw4XhkbFS-d_UU_L2U7jHwf-uEFK67solAtmbs_Kr0XH4W1dtzAB9mTUqB_ahbOG4FiQLJQ_xCYLXCRwhI9krDhVITkKw_Ls0IZnrEaAPk4Vp1MWZ-6UJ2DoA58Od6c58X2N0KLPvjhK_lmfM1R4Yx3huVDWj3IwT8KBiXxUIvFIrG9UvooL4gzbtnnMvnI2VKRDyLIsQAfETpX7EqvHM5tp2niXqQeLeScayCFnC-d46y5V6PVanISjX67Sx0WbxwM0kknbhjW8vRKrYCtqEKpHYB73B0deWH_DnWQXVlsA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/private/funds/:isin",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"funds",
+								":isin"
+							],
+							"variable": [
+								{
+									"key": "isin",
+									"value": "IE00B03HCZ61"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFundHistorical",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImEzYjc2MmY4NzFjZGIzYmFlMDA0NGM2NDk2MjJmYzEzOTZlZGEzZTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzg0MDY5NDU5MjI0MDAzODQxIiwiZW1haWwiOiJhbGVqYW5kcm9tYXJ0b3JlbGxoZXJuYW5kZXpAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiIzajhGd0xUWUJLU3k2NFc0Q0dvN3pnIiwiaWF0IjoxNzE1NTMzMzQ0LCJleHAiOjE3MTU1MzY5NDR9.QgZ5iB421sZgPSv3RPUsfN4qNqrotXbwlDS9r1qbV6YbnmamRNc5zSG9a8okx11Yei1YA6MnjNGStGL_zMpfmvUQQVlny2n8oj5uo7tZcoEWKAVPAZdKUurPnMeZ2VxOoZmIh0j84DCJU0mkjBSXg6MPWxdnc6IIuFOogufZC2yjgH7pZO9vARf7hqDpESQhRD3x1C50Onbahb-YbBByni_qAuqWvh2J_XHuMZKI2274QifOYFws7jbvkaPqRT1R1BX9TUGgBpNUWJpUirpnM1A0wOsvyAAwIX9SQJ74edlbaUbC4yu1GIImZ-Y9LTJlibZVIHlwkLtJ4ZZ0FrKbIA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/private/funds/:isin/historical?start=2024-01-01&end=2024-06-01",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"funds",
+								":isin",
+								"historical"
+							],
+							"query": [
+								{
+									"key": "start",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "end",
+									"value": "2024-06-01"
+								}
+							],
+							"variable": [
+								{
+									"key": "isin",
+									"value": "IE00B03HCZ61"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "wallet",
+			"item": [
+				{
+					"name": "getWallet",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImEzYjc2MmY4NzFjZGIzYmFlMDA0NGM2NDk2MjJmYzEzOTZlZGEzZTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzg0MDY5NDU5MjI0MDAzODQxIiwiZW1haWwiOiJhbGVqYW5kcm9tYXJ0b3JlbGxoZXJuYW5kZXpAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJ6TE9tOWFYYnlBbUJnelZlUnZ1MlVBIiwiaWF0IjoxNzE1NTIzNzkxLCJleHAiOjE3MTU1MjczOTF9.Z6W0aBAJ251hQSmcM-lJFJNRWq6wUvHTw-vI3YdeV7H1BJVMfOgBLN4_SVzZxfs9zx4z3TsFyvYdOUFrwdniK1Q0tT4lz2lTVF8cZjFUVk_Yqae5QRu1wjI5tTZ8iRb4_VgbA3jXz3e-8DgkNNGr6Qwv1qL5FIdrIbZTNJ2d2Y5UsoEIQ143_rIanS4vz2lN5ihCsHP7ydyBdNCzTNglXg7oJop535-5LPsVZg8p-EU6x9k76xBKuEk806GmB00NBaaUHVEytrsRD5C562rgoJfdukcqAbStp4PVEldIvIZHGw662ZF11UK1rur3-glcXGkU_LMGchMzdS5SZBUVnA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/private/wallet",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"wallet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buyFund",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImEzYjc2MmY4NzFjZGIzYmFlMDA0NGM2NDk2MjJmYzEzOTZlZGEzZTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzg0MDY5NDU5MjI0MDAzODQxIiwiZW1haWwiOiJhbGVqYW5kcm9tYXJ0b3JlbGxoZXJuYW5kZXpAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiIzajhGd0xUWUJLU3k2NFc0Q0dvN3pnIiwiaWF0IjoxNzE1NTMzMzQ0LCJleHAiOjE3MTU1MzY5NDR9.QgZ5iB421sZgPSv3RPUsfN4qNqrotXbwlDS9r1qbV6YbnmamRNc5zSG9a8okx11Yei1YA6MnjNGStGL_zMpfmvUQQVlny2n8oj5uo7tZcoEWKAVPAZdKUurPnMeZ2VxOoZmIh0j84DCJU0mkjBSXg6MPWxdnc6IIuFOogufZC2yjgH7pZO9vARf7hqDpESQhRD3x1C50Onbahb-YbBByni_qAuqWvh2J_XHuMZKI2274QifOYFws7jbvkaPqRT1R1BX9TUGgBpNUWJpUirpnM1A0wOsvyAAwIX9SQJ74edlbaUbC4yu1GIImZ-Y9LTJlibZVIHlwkLtJ4ZZ0FrKbIA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/private/wallet/:isin/buy?quantity=500",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"wallet",
+								":isin",
+								"buy"
+							],
+							"query": [
+								{
+									"key": "quantity",
+									"value": "500"
+								}
+							],
+							"variable": [
+								{
+									"key": "isin",
+									"value": "IE00B03HCZ6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sellFund",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImEzYjc2MmY4NzFjZGIzYmFlMDA0NGM2NDk2MjJmYzEzOTZlZGEzZTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzg0MDY5NDU5MjI0MDAzODQxIiwiZW1haWwiOiJhbGVqYW5kcm9tYXJ0b3JlbGxoZXJuYW5kZXpAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJMZFUtN0I1Sjl2aTk3TXkxd0FFdzNRIiwiaWF0IjoxNzE1NTIyODI4LCJleHAiOjE3MTU1MjY0Mjh9.Wzm7AGHQ4fdQyHQtm_VrsRvzbXYQoYnqLtawC1fgHSR8G0OY1YzUWlZ-jXhl5Excq0gapdnUn4igSeHXoe_qonGHIvB7ZyKXeImNewJBR4Stch2HwyRbpvKUmKCt0SvLBG0sGifKXryCvIbmQk_mtokiX-aiHnmiRVtvAnwpDy9R3RNFFXdM3Z63oaAfdasJ_e_jHzE2zBv-2wpid1UqG2fxCdvK6REcfvQLA08i1ISWymzOjaG2_sv9lsd67AfMKQ51r3RUHkiU_a8fkLSBeqA8plW8aaDQ7OMxrGpAIBOKU9MTTAFtN66SsyKZHvzRjLBlE-GtS1pDSOB-VmOXtg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/private/wallet/:isin/sell?quantity=500",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"wallet",
+								":isin",
+								"sell"
+							],
+							"query": [
+								{
+									"key": "quantity",
+									"value": "500"
+								}
+							],
+							"variable": [
+								{
+									"key": "isin",
+									"value": "IE00B03HCZ61"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTransactions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImEzYjc2MmY4NzFjZGIzYmFlMDA0NGM2NDk2MjJmYzEzOTZlZGEzZTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzg0MDY5NDU5MjI0MDAzODQxIiwiZW1haWwiOiJhbGVqYW5kcm9tYXJ0b3JlbGxoZXJuYW5kZXpAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJMZFUtN0I1Sjl2aTk3TXkxd0FFdzNRIiwiaWF0IjoxNzE1NTIyODI4LCJleHAiOjE3MTU1MjY0Mjh9.Wzm7AGHQ4fdQyHQtm_VrsRvzbXYQoYnqLtawC1fgHSR8G0OY1YzUWlZ-jXhl5Excq0gapdnUn4igSeHXoe_qonGHIvB7ZyKXeImNewJBR4Stch2HwyRbpvKUmKCt0SvLBG0sGifKXryCvIbmQk_mtokiX-aiHnmiRVtvAnwpDy9R3RNFFXdM3Z63oaAfdasJ_e_jHzE2zBv-2wpid1UqG2fxCdvK6REcfvQLA08i1ISWymzOjaG2_sv9lsd67AfMKQ51r3RUHkiU_a8fkLSBeqA8plW8aaDQ7OMxrGpAIBOKU9MTTAFtN66SsyKZHvzRjLBlE-GtS1pDSOB-VmOXtg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/private/wallet/:isin/transactions?start=2024-01-01T14:17:33&end=2024-06-01T14:17:33",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"wallet",
+								":isin",
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "start",
+									"value": "2024-01-01T14:17:33"
+								},
+								{
+									"key": "end",
+									"value": "2024-06-01T14:17:33"
+								}
+							],
+							"variable": [
+								{
+									"key": "isin",
+									"value": "IE00B03HCZ61"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createInvestmentPlan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImEzYjc2MmY4NzFjZGIzYmFlMDA0NGM2NDk2MjJmYzEzOTZlZGEzZTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzg0MDY5NDU5MjI0MDAzODQxIiwiZW1haWwiOiJhbGVqYW5kcm9tYXJ0b3JlbGxoZXJuYW5kZXpAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJvM2xqclNKbkVuRVFKWmExX082dnVBIiwiaWF0IjoxNzE1NTMxNTcxLCJleHAiOjE3MTU1MzUxNzF9.MeBFyXfIzxZjPpBxRO6bTIorlMimJ8n1tdutVogs23i2EmlOSgLJcS0hG-yHuyevVkQVXcBGh6LL4oJcjA2dGefShbzNdlJIewEe6IPYeqdwk_21tUIUjBEYaQMfZvfSp_h1WLISsoI6S4hwsGtg_mbpF_RqJl01yua983dUr-44JZJrGd67KCktkKjr0bPtH7mMw4IuV5tDmjhPt3o7lcDYN48e53N0oh8eQ4By0f77uiA0HWvMcjHP_n16gxoD-qGJe4GyHXVrEBU1OqfdFbKPqhGQuxU0fHr_oyYQ0DWuRoZl3WhmrmvXHe2xNw6b4N2r70smV3XrxTKv_oqqRA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/private/wallet/:isin/investmentPlan/create?dayOfMonth=31&quantity=400",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"wallet",
+								":isin",
+								"investmentPlan",
+								"create"
+							],
+							"query": [
+								{
+									"key": "dayOfMonth",
+									"value": "31"
+								},
+								{
+									"key": "quantity",
+									"value": "400"
+								}
+							],
+							"variable": [
+								{
+									"key": "isin",
+									"value": "LU0836512615"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getInvestmentPlans",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImEzYjc2MmY4NzFjZGIzYmFlMDA0NGM2NDk2MjJmYzEzOTZlZGEzZTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzg0MDY5NDU5MjI0MDAzODQxIiwiZW1haWwiOiJhbGVqYW5kcm9tYXJ0b3JlbGxoZXJuYW5kZXpAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJvM2xqclNKbkVuRVFKWmExX082dnVBIiwiaWF0IjoxNzE1NTMxNTcxLCJleHAiOjE3MTU1MzUxNzF9.MeBFyXfIzxZjPpBxRO6bTIorlMimJ8n1tdutVogs23i2EmlOSgLJcS0hG-yHuyevVkQVXcBGh6LL4oJcjA2dGefShbzNdlJIewEe6IPYeqdwk_21tUIUjBEYaQMfZvfSp_h1WLISsoI6S4hwsGtg_mbpF_RqJl01yua983dUr-44JZJrGd67KCktkKjr0bPtH7mMw4IuV5tDmjhPt3o7lcDYN48e53N0oh8eQ4By0f77uiA0HWvMcjHP_n16gxoD-qGJe4GyHXVrEBU1OqfdFbKPqhGQuxU0fHr_oyYQ0DWuRoZl3WhmrmvXHe2xNw6b4N2r70smV3XrxTKv_oqqRA"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/private/wallet/investmentPlans",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"wallet",
+								"investmentPlans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getInvestmentPlan",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6ImEzYjc2MmY4NzFjZGIzYmFlMDA0NGM2NDk2MjJmYzEzOTZlZGEzZTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzg0MDY5NDU5MjI0MDAzODQxIiwiZW1haWwiOiJhbGVqYW5kcm9tYXJ0b3JlbGxoZXJuYW5kZXpAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJvM2xqclNKbkVuRVFKWmExX082dnVBIiwiaWF0IjoxNzE1NTMxNTcxLCJleHAiOjE3MTU1MzUxNzF9.MeBFyXfIzxZjPpBxRO6bTIorlMimJ8n1tdutVogs23i2EmlOSgLJcS0hG-yHuyevVkQVXcBGh6LL4oJcjA2dGefShbzNdlJIewEe6IPYeqdwk_21tUIUjBEYaQMfZvfSp_h1WLISsoI6S4hwsGtg_mbpF_RqJl01yua983dUr-44JZJrGd67KCktkKjr0bPtH7mMw4IuV5tDmjhPt3o7lcDYN48e53N0oh8eQ4By0f77uiA0HWvMcjHP_n16gxoD-qGJe4GyHXVrEBU1OqfdFbKPqhGQuxU0fHr_oyYQ0DWuRoZl3WhmrmvXHe2xNw6b4N2r70smV3XrxTKv_oqqRA"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/private/wallet/investmentPlans/:isin",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"wallet",
+								"investmentPlans",
+								":isin"
+							],
+							"variable": [
+								{
+									"key": "isin",
+									"value": "IE00B03HCZ61"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteInvestmentPlan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImEzYjc2MmY4NzFjZGIzYmFlMDA0NGM2NDk2MjJmYzEzOTZlZGEzZTMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNjgzNzc2OTQyNjE3LTYxazdva3FsNTM1dTExYzFodmxqN3BtaDY2ZnI0MmhkLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0Mzg0MDY5NDU5MjI0MDAzODQxIiwiZW1haWwiOiJhbGVqYW5kcm9tYXJ0b3JlbGxoZXJuYW5kZXpAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJvM2xqclNKbkVuRVFKWmExX082dnVBIiwiaWF0IjoxNzE1NTMxNTcxLCJleHAiOjE3MTU1MzUxNzF9.MeBFyXfIzxZjPpBxRO6bTIorlMimJ8n1tdutVogs23i2EmlOSgLJcS0hG-yHuyevVkQVXcBGh6LL4oJcjA2dGefShbzNdlJIewEe6IPYeqdwk_21tUIUjBEYaQMfZvfSp_h1WLISsoI6S4hwsGtg_mbpF_RqJl01yua983dUr-44JZJrGd67KCktkKjr0bPtH7mMw4IuV5tDmjhPt3o7lcDYN48e53N0oh8eQ4By0f77uiA0HWvMcjHP_n16gxoD-qGJe4GyHXVrEBU1OqfdFbKPqhGQuxU0fHr_oyYQ0DWuRoZl3WhmrmvXHe2xNw6b4N2r70smV3XrxTKv_oqqRA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/private/wallet/investmentPlans/:isin/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"private",
+								"wallet",
+								"investmentPlans",
+								":isin",
+								"delete"
+							],
+							"variable": [
+								{
+									"key": "isin",
+									"value": "IE00B03HCZ61"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "scope",
+							"value": "https://www.googleapis.com/auth/userinfo.email",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "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",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "683776942617-61k7okql535u11c1hvlj7pmh66fr42hd.apps.googleusercontent.com",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://accounts.google.com/o/oauth2/token",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://accounts.google.com/o/oauth2/auth",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://oauth.pstmn.io/v1/callback",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Google OAuth",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "login",
+					"host": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
